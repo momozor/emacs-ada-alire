@@ -47,7 +47,7 @@
   (message "Running project..")
   (shell-command "alr run"))
 
-(defun alr-search-installable ()
+(defun alr-list-installable-crates ()
   (interactive)
   (cd *alire-project-root*)
   (shell-command "alr search --list"))
