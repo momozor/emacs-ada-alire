@@ -16,59 +16,52 @@
 
 ;;; Code:
 
-(defvar *ada-project-root* nil)
+(defvar *alire-project-root* nil)
 
-(defun alr-in-root-directory? () nil)
-
-(defun alr-version () nil)
+(defun alr-version ()
+  (interactive)
+  (cd *alire-project-root*)
+  (shell-command "alr version"))
 
 (defun alr-print-current-project-root-path ()
   (interactive)
-  (message *ada-project-root*))
+  (message *alire-project-root*))
 
 (defun alr-cd-project-root ()
   (interactive)
   (let ((directory-path
          (read-directory-name "Project root absolute path: ")))
     (cd directory-path)
-    (setf *ada-project-root* directory-path)
+    (setf *alire-project-root* directory-path)
     (message "You are now in %s" directory-path)))
 
-(defun alr-build () nil)
+(defun alr-build ()
+  (interactive)
+  (cd *alire-project-root*)
+  (message "Building project..")
+  (shell-command "alr build"))
 
-(defun alr-run () nil)
+(defun alr-run ()
+  (interactive)
+  (cd *alire-project-root*)
+  (message "Running project..")
+  (shell-command "alr run"))
 
-(defun alr-search-installable () nil)
+(defun alr-search-installable ()
+  (interactive)
+  (cd *alire-project-root*)
+  (shell-command "alr search --list"))
 
 (defun alr-with ()
   (interactive)
   (let ((crate-name
          (read-string "Crate name: ")))
-    (cd "/home/momozor/quicklisp/local-projects/non_lisp/ada/nzping")
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    (cd *alire-project-root*)
     (shell-command (format "alr with %s" crate-name))))
 
-  (defun alr-update () nil)
-
-  (defun alr-info (number)
-    "Multiply NUMBER by seven."
-    (interactive "p")
-    (message "The result is %d" (* 8 number)))
+(defun alr-update ()
+  (interactive)
+  (cd *alire-project-root*)
+  (shell-command "alr update"))
 
 ;;; ada-alire.el ends here
