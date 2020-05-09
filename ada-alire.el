@@ -35,12 +35,15 @@
 
 ;;; Code:
 
+(defvar *current-directory* nil)
 (defvar *alire-project-root* nil)
 
-(defun alr-version ()
+(defun alr-info ()
   (interactive)
+  (setf *current-directory* (file-name-directory buffer-file-name))
   (cd *alire-project-root*)
-  (shell-command "alr version"))
+  (shell-command "alr version")
+  (cd *current-directory*))
 
 (defun alr-set-project-path ()
   (interactive)
@@ -69,31 +72,62 @@
 
 (defun alr-build ()
   (interactive)
+  (setf *current-directory* (file-name-directory buffer-file-name))
+  
   (cd *alire-project-root*)
   (message "Building project..")
-  (shell-command "alr build"))
+  (shell-command "alr build")
+
+  (cd *current-directory*))
 
 (defun alr-run ()
   (interactive)
+  (setf *current-directory* (file-name-directory buffer-file-name))
+  
   (cd *alire-project-root*)
   (message "Running project..")
-  (shell-command "alr run"))
+  (shell-command "alr run")
+
+  (cd *current-directory*))
 
 (defun alr-list-installable-crates ()
   (interactive)
+  (setf *current-directory* (file-name-directory buffer-file-name))
   (cd *alire-project-root*)
-  (shell-command "alr search --list"))
+  (shell-command "alr search --list")
 
-(defun alr-with ()
+  (cd *current-directory*))
+
+(defun alr-get ()
   (interactive)
+
+  (setf *current-directory* (file-name-directory buffer-file-name))
   (let ((crate-name
          (read-string "Crate name: ")))
     (cd *alire-project-root*)
-    (shell-command (format "alr with %s" crate-name))))
+    (shell-command (format "alr get %s" crate-name)))
+
+  (cd *current-directory*))
+
+(defun alr-with ()
+  (interactive)
+
+  (setf *current-directory* (file-name-directory buffer-file-name))
+  (let ((crate-name
+         (read-string "Crate name: "))
+        (download-directory
+         (read-directory-name "Absolute folder location to put the downloaded crate? ")))
+    (shell-command (format "alr with %s" crate-name)))
+
+  (cd *current-directory*))
 
 (defun alr-update ()
   (interactive)
+
+  (setf *current-directory* (file-name-directory buffer-file-name))
   (cd *alire-project-root*)
-  (shell-command "alr update"))
+  (shell-command "alr update")
+
+  (cd *current-directory*))
 
 ;;; ada-alire.el ends here

@@ -17,6 +17,7 @@ to be installed and available in `PATH` to use this package.
 - `alr-run`
 - `alr-build`
 - `alr-info`
+- `alr-get`
 - `alr-with`
 - `alr-list-installable-crates`
 - `alr-set-project-path`
