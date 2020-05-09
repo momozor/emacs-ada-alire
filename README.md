@@ -16,11 +16,12 @@ to be installed and available in `PATH` to use this package.
 ## Features
 - `alr-run`
 - `alr-build`
-- `alr-version`
+- `alr-info`
 - `alr-with`
 - `alr-list-installable-crates`
-- `alr-cd-project-root`
-- `alr-print-current-project-root-path`
+- `alr-set-project-path`
+- `alr-cd-to-project`
+- `alr-print-project-path`
 
 ## Status
 Unstable (use at your own risk)

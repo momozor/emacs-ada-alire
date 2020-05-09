@@ -42,17 +42,30 @@
   (cd *alire-project-root*)
   (shell-command "alr version"))
 
-(defun alr-print-current-project-root-path ()
-  (interactive)
-  (message *alire-project-root*))
-
-(defun alr-cd-project-root ()
+(defun alr-set-project-path ()
   (interactive)
   (let ((directory-path
-         (read-directory-name "Project root absolute path: ")))
-    (cd directory-path)
+         (read-directory-name "Project absolute path: ")))
     (setf *alire-project-root* directory-path)
-    (message "You are now in %s" directory-path)))
+    (message "Set project path to %s" directory-path))
+
+  (let ((change-directory-now?
+         (read-string "Change directory into project now? ")))
+    (when (or (string-equal "y" change-directory-now?)
+              (string-equal "yes" change-directory-now?)
+              (string-equal "Y" change-directory-now?)
+              (string-equal "YES" change-directory-now?))
+      (progn
+        (alr-cd-to-project)))))
+
+(defun alr-cd-to-project ()
+  (interactive)
+  (cd *alire-project-root*)
+  (message "You are now in %s" *alire-project-root*))
+
+(defun alr-print-project-path ()
+  (interactive)
+  (message *alire-project-root*))
 
 (defun alr-build ()
   (interactive)
