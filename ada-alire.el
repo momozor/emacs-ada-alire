@@ -35,6 +35,8 @@
 
 ;;; Code:
 
+(setf lexical-binding t)
+
 (defvar *current-directory* nil)
 (defvar *alire-project-root* nil)
 
@@ -98,25 +100,13 @@
 
   (cd *current-directory*))
 
-(defun alr-get ()
-  (interactive)
-
-  (setf *current-directory* (file-name-directory buffer-file-name))
-  (let ((crate-name
-         (read-string "Crate name: ")))
-    (cd *alire-project-root*)
-    (shell-command (format "alr get %s" crate-name)))
-
-  (cd *current-directory*))
-
 (defun alr-with ()
   (interactive)
 
   (setf *current-directory* (file-name-directory buffer-file-name))
+  (cd *alire-project-root*)
   (let ((crate-name
-         (read-string "Crate name: "))
-        (download-directory
-         (read-directory-name "Absolute folder location to put the downloaded crate? ")))
+         (read-string "Crate name: ")))
     (shell-command (format "alr with %s" crate-name)))
 
   (cd *current-directory*))
