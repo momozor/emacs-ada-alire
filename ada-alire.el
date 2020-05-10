@@ -1,4 +1,4 @@
-;;; ada-alire.el --- A lightweight Ada Alire's alr commander. -*- lexical-binding: t; -*-
+;;; ada-alire.el --- A lightweight Ada Alire's alr commander
 
 ;; Copyright (c) 2020 Momozor <skelic3@gmail.com, momozor4@gmail.com>
 
@@ -35,87 +35,89 @@
 
 ;;; Code:
 
-(defvar *current-directory* nil)
-(defvar *alire-project-root* nil)
+(provide 'ada-alire)
 
-(defun alr-info ()
+(defvar ada-alire-current-directory)
+(defvar ada-alire-project-root)
+
+(defun ada-alire-info ()
   (interactive)
-  (setf *current-directory* (file-name-directory buffer-file-name))
-  (cd *alire-project-root*)
+  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
+  (cd ada-alire-project-root)
   (shell-command "alr version")
-  (cd *current-directory*))
+  (cd ada-alire-current-directory))
 
-(defun alr-set-project-path ()
+(defun ada-alire-set-project-path ()
   (interactive)
   (let ((directory-path
          (read-directory-name "Project absolute path: ")))
-    (setf *alire-project-root* directory-path)
+    (setf ada-alire-project-root directory-path)
     (message "Set project path to %s" directory-path))
 
   (let ((change-directory-now?
-         (read-string "Change directory into project now? ")))
+         (read-string "Change directory into project now? (y/n) ")))
     (when (or (string-equal "y" change-directory-now?)
               (string-equal "yes" change-directory-now?)
               (string-equal "Y" change-directory-now?)
               (string-equal "YES" change-directory-now?))
       (progn
-        (alr-cd-to-project)))))
+        (ada-alire-cd-to-project)))))
 
-(defun alr-cd-to-project ()
+(defun ada-alire-cd-to-project ()
   (interactive)
-  (cd *alire-project-root*)
-  (message "You are now in %s" *alire-project-root*))
+  (cd ada-alire-project-root)
+  (message "You are now in %s" ada-alire-project-root))
 
-(defun alr-print-project-path ()
+(defun ada-alire-print-project-path ()
   (interactive)
-  (message *alire-project-root*))
+  (message ada-alire-project-root))
 
-(defun alr-build ()
+(defun ada-alire-build ()
   (interactive)
-  (setf *current-directory* (file-name-directory buffer-file-name))
+  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
   
-  (cd *alire-project-root*)
+  (cd ada-alire-project-root)
   (message "Building project..")
   (shell-command "alr build")
 
-  (cd *current-directory*))
+  (cd ada-alire-current-directory))
 
-(defun alr-run ()
+(defun ada-alire-run ()
   (interactive)
-  (setf *current-directory* (file-name-directory buffer-file-name))
+  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
   
-  (cd *alire-project-root*)
+  (cd ada-alire-project-root)
   (message "Running project..")
   (shell-command "alr run")
 
-  (cd *current-directory*))
+  (cd ada-alire-current-directory))
 
-(defun alr-list-installable-crates ()
+(defun ada-alire-list-installable-crates ()
   (interactive)
-  (setf *current-directory* (file-name-directory buffer-file-name))
-  (cd *alire-project-root*)
+  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
+  (cd ada-alire-project-root)
   (shell-command "alr search --list")
 
-  (cd *current-directory*))
+  (cd ada-alire-current-directory))
 
-(defun alr-with ()
+(defun ada-alire-with ()
   (interactive)
 
-  (setf *current-directory* (file-name-directory buffer-file-name))
-  (cd *alire-project-root*)
+  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
+  (cd ada-alire-project-root)
   (let ((crate-name
          (read-string "Crate name: ")))
     (shell-command (format "alr with %s" crate-name)))
 
-  (cd *current-directory*))
+  (cd ada-alire-current-directory))
 
-(defun alr-update ()
+(defun ada-alire-update ()
   (interactive)
 
-  (setf *current-directory* (file-name-directory buffer-file-name))
-  (cd *alire-project-root*)
+  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
+  (cd ada-alire-project-root)
   (shell-command "alr update")
 
-  (cd *current-directory*))
+  (cd ada-alire-current-directory))
 
 ;;; ada-alire.el ends here
