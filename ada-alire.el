@@ -60,8 +60,8 @@
               (string-equal "yes" change-directory-now?)
               (string-equal "Y" change-directory-now?)
               (string-equal "YES" change-directory-now?))
-      (progn
-        (ada-alire-cd-to-project)))))
+      
+      (ada-alire-cd-to-project))))
 
 (defun ada-alire-cd-to-project ()
   (interactive)
@@ -100,14 +100,26 @@
 
   (cd ada-alire-current-directory))
 
-(defun ada-alire-with ()
+(defun ada-alire-install-crate ()
   (interactive)
 
   (setf ada-alire-current-directory (file-name-directory buffer-file-name))
   (cd ada-alire-project-root)
   (let ((crate-name
-         (read-string "Crate name: ")))
+         (read-string "Crate name to install: ")))
     (shell-command (format "alr with %s" crate-name)))
+
+  (cd ada-alire-current-directory))
+
+(defun ada-alire-remove-crate ()
+  (interactive)
+
+  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
+  (cd ada-alire-project-root)
+
+  (let ((crate-name
+         (read-string "Crate name to remove: ")))
+    (shell-command (format "alr with --del %s" crate-name)))
 
   (cd ada-alire-current-directory))
 

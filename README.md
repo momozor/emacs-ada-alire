@@ -9,7 +9,7 @@ Currently, this package is just a single file and not available in
 MELPA. You have to install and load the file manually. 
 
 To load it everytime you run Emacs, simply put `(load-file "/path/to/ada-alire.el")`
-inside your `.emacs` file. Next time you launch Emacs, `ada-alire-with` and many others will be available by default.
+inside your `.emacs` file. Next time you launch Emacs, `ada-alire-install-crate` and many others will be available by default.
 
 You need `alr` tool from [alire](https://github.com/alire-project/alire) project
 to be installed and available in `PATH` to use this package.
@@ -34,7 +34,10 @@ Invoke the commands with `M-x ada-alire-command`
 - `ada-alire-build`
 
 ### "Install" crate into your local project.
-- `ada-alire-with`
+- `ada-alire-install-crate`
+
+### "Remove" crate from your local project.
+- `ada-alire-remove-crate`
 
 ### Print basic info of the local project.
 - `ada-alire-info`
