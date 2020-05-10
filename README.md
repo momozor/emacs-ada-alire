@@ -39,19 +39,22 @@ Invoke the commands with `M-x ada-alire-command`
 ### "Remove" crate from your local project.
 - `ada-alire-remove-crate`
 
+### Clean project directory.
+- `ada-alire-clean`
+
 ### Print basic info of the local project.
 - `ada-alire-info`
 
-### List all installable crates (i.e with alr-with)
+### List all installable crates
 - `ada-alire-list-installable-crates`
 
-### Letting alire-ada know where to find the local project you want to work on.
+### Letting ada-alire know where to find the local project you want to work on.
 - `ada-alire-set-project-path`
 
 ### Change session directory to the local project.
 - `ada-alire-cd-to-project`
 
-### Print registered local project path known by alire-ada.
+### Print registered local project path known by ada-alire.
 - `ada-alire-print-project-path`
 
 ## Status

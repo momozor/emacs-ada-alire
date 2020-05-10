@@ -40,6 +40,17 @@
 (defvar ada-alire-current-directory)
 (defvar ada-alire-project-root)
 
+(defun ada-alire-clean ()
+  (interactive)
+
+  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
+  (cd ada-alire-project-root)
+
+  (message "Cleaning project..")
+  (shell-command "alr clean")
+  
+  (cd ada-alire-current-directory))
+
 (defun ada-alire-info ()
   (interactive)
   (setf ada-alire-current-directory (file-name-directory buffer-file-name))
