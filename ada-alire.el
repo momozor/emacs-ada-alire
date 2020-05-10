@@ -1,4 +1,4 @@
-;;; ada-alire.el --- A lightweight Ada Alire's alr commander.
+;;; ada-alire.el --- A lightweight Ada Alire's alr commander. -*- lexical-binding: t; -*-
 
 ;; Copyright (c) 2020 Momozor <skelic3@gmail.com, momozor4@gmail.com>
 
@@ -34,8 +34,6 @@
 ;; Full documentation is available as an Info manual.
 
 ;;; Code:
-
-(setf lexical-binding t)
 
 (defvar *current-directory* nil)
 (defvar *alire-project-root* nil)
