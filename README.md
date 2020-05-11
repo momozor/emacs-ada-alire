@@ -61,5 +61,5 @@ Invoke the commands with `M-x ada-alire-command`
 Unstable (use at your own risk)
 
 ## License
-This software is licensed under the MIT license. See COPYING
+This software is licensed under the GPL-3.0 or later license. See COPYING
 file for more details.
