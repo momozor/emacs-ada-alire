@@ -1,4 +1,4 @@
-;;; ada-alire.el --- A lightweight Ada Alire's alr commander
+;;; ada-alire.el --- A lightweight Ada Alire's alr commander  -*- lexical-binding: t -*-
 
 ;; Copyright (c) 2020 Momozor <skelic3@gmail.com, momozor4@gmail.com>
 
@@ -20,6 +20,7 @@
 ;; Version: 0.1
 ;; Keywords: ada, alire, alr, productivity
 ;; URL: https://github.com/momozor/ada-alire
+;; Package-Requires: ((emacs "24"))
 
 ;;; Commentary:
 
