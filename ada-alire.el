@@ -18,7 +18,7 @@
 
 ;; Author: Momozor <skelic3@gmail.com, momozor4@gmail.com>
 ;; Version: 0.1
-;; Keywords: ada, alire, alr, productivity
+;; Keywords: tools, ada
 ;; URL: https://github.com/momozor/ada-alire
 ;; Package-Requires: ((emacs "24"))
 
