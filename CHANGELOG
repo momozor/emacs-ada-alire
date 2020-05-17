@@ -3,4 +3,5 @@
 
 	- Renamed ada-alire-remove-crate to
 	ada-alire-uninstall crate.
-	- Add run, build, install, and uninstall commands keybindings.
+	- Add set-project path, cd to project, run, build, install,
+	and uninstall commands keybindings.
