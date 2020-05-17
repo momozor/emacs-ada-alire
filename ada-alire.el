@@ -35,7 +35,6 @@
 (require 'compile)
 (require 'button)
 (require 'ada-mode)
-(require 'toml-mode)
 
 (provide 'ada-alire)
 
@@ -59,16 +58,22 @@
 (defvar ada-alire-current-directory)
 (defvar ada-alire-project-root)
 
+(defun ada-alire--start (name command &optional last-command)
+  (let* ((buffer (concat "*ada-alire (alr) " name "*")))
+
+    (setf ada-alire-current-directory
+          (file-name-directory buffer-file-name))
+
+    (shell-command (format "alr %s %s" command last-command)
+                   buffer)
+
+    (cd ada-alire-current-directory)))
+
 (defun ada-alire-clean ()
   (interactive)
 
-  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
-  (cd ada-alire-project-root)
-
   (message "Cleaning project..")
-  (shell-command "alr clean")
-  
-  (cd ada-alire-current-directory))
+  (ada-alire--start "clean" "clean"))
 
 (defun ada-alire-info ()
   (interactive)
