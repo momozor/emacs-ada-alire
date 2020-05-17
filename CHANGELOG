@@ -1,0 +1,6 @@
+0.2
+	Changes since 0.1
+
+	- Renamed ada-alire-remove-crate to
+	ada-alire-uninstall crate.
+	- Add run, build, install, and uninstall commands keybindings.
