@@ -59,8 +59,7 @@
 (defvar ada-alire-project-root)
 
 (defun ada-alire--start (name command &optional last-command)
-  (let* ((buffer (concat "*ada-alire (alr) " name "*"))
-         (buffer-read-only t))
+  (let* ((buffer (concat "*ada-alire (alr) " name "*")))
 
     (setf ada-alire-current-directory
           (file-name-directory buffer-file-name))
