@@ -44,10 +44,10 @@
 \\{ada-alire-minor-mode-map}"
   nil " ada-alire" ada-alire-minor-mode-map)
 
-(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-r" 'ada-alire-run))
-(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-b" 'ada-alire-build))
-(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-i" 'ada-alire-install-crate))
-(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-u" 'ada-alire-uninstall-crate))
+(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-r") 'ada-alire-run)
+(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-b") 'ada-alire-build)
+(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-i") 'ada-alire-install-crate)
+(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-u") 'ada-alire-uninstall-crate)
 
 (defvar ada-alire-current-directory)
 (defvar ada-alire-project-root)
