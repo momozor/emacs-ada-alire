@@ -21,7 +21,7 @@
 ;; Version: 0.2
 ;; Keywords: tools, ada
 ;; URL: https://github.com/momozor/ada-alire
-;; Package-Requires: ((emacs "24") (ada-mode "7.1.1"))
+;; Package-Requires: ((emacs "24") (ada-mode "7.1.1") (toml-mode "0.1.3"))
 
 ;;; Commentary:
 
@@ -35,6 +35,7 @@
 (require 'compile)
 (require 'button)
 (require 'ada-mode)
+(require 'toml-mode)
 
 (provide 'ada-alire)
 
