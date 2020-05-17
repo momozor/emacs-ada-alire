@@ -6,7 +6,7 @@ No need to switch context from your editor to terminal.
 
 ## Version
 
-0.2
+0.3
 
 ## Installation
 Currently, this package is just a single file and not available in
