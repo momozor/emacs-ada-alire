@@ -64,6 +64,7 @@
     (setf ada-alire-current-directory
           (file-name-directory buffer-file-name))
 
+    (cd ada-alire-project-root)
     (shell-command (format "alr %s %s" command last-command)
                    buffer)
 
@@ -77,10 +78,9 @@
 
 (defun ada-alire-info ()
   (interactive)
-  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
-  (cd ada-alire-project-root)
-  (shell-command "alr version")
-  (cd ada-alire-current-directory))
+
+  (message "Showing project info..")
+  (ada-alire--start "info" "version"))
 
 (defun ada-alire-set-project-path ()
   (interactive)
