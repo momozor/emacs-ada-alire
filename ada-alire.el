@@ -1,6 +1,7 @@
 ;;; ada-alire.el --- A lightweight Ada Alire's alr commander  -*- lexical-binding: t -*-
 
 ;; Copyright (c) 2020 Momozor <skelic3@gmail.com, momozor4@gmail.com>
+;; Copyright (C) 2015  Kevin W. van Rooijen
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -32,6 +33,21 @@
 ;;; Code:
 
 (provide 'ada-alire)
+
+(defvar ada-alire-minor-mode-map (make-keymap) "ada-alire-mode keymap.")
+(defvar ada-alire-minor-mode nil)
+
+;;;###autoload
+(define-minor-mode ada-alire-minor-mode
+  "Ada Alire minor mode. Used to hold keybindings for ada-alire mode.
+
+\\{ada-alire-minor-mode-map}"
+  nil " ada-alire" ada-alire-minor-mode-map)
+
+(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-r" 'ada-alire-run))
+(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-b" 'ada-alire-build))
+(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-i" 'ada-alire-install-crate))
+(define-key ada-alire-minor-mode-map (kbd "C-c C-c C-u" 'ada-alire-uninstall-crate))
 
 (defvar ada-alire-current-directory)
 (defvar ada-alire-project-root)
@@ -118,14 +134,14 @@
 
   (cd ada-alire-current-directory))
 
-(defun ada-alire-remove-crate ()
+(defun ada-alire-uninstall-crate ()
   (interactive)
 
   (setf ada-alire-current-directory (file-name-directory buffer-file-name))
   (cd ada-alire-project-root)
 
   (let ((crate-name
-         (read-string "Crate name to remove: ")))
+         (read-string "Crate name to uninstall: ")))
     (shell-command (format "alr with --del %s" crate-name)))
 
   (cd ada-alire-current-directory))
