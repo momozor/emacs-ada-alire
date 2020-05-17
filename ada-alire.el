@@ -32,12 +32,16 @@
 
 ;;; Code:
 
+(require 'compile)
+(require 'button)
+(require 'ada-mode)
+
+(provide 'ada-alire)
+
 (defgroup ada-alire nil
   "ada-alire group."
   :prefix "ada-alire-"
   :group 'tools)
-
-(provide 'ada-alire)
 
 (defvar ada-alire-minor-mode-map (make-keymap) "ada-alire-mode keymap.")
 (defvar ada-alire-minor-mode nil)
