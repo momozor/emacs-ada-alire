@@ -59,7 +59,8 @@
 (defvar ada-alire-project-root)
 
 (defun ada-alire--start (name command &optional last-command)
-  (let* ((buffer (concat "*ada-alire (alr) " name "*")))
+  (let* ((buffer (concat "*ada-alire (alr) " name "*"))
+         (buffer-read-only t))
 
     (setf ada-alire-current-directory
           (file-name-directory buffer-file-name))
@@ -84,6 +85,7 @@
 
 (defun ada-alire-set-project-path ()
   (interactive)
+  
   (let ((directory-path
          (read-directory-name "Project absolute path: ")))
     (setf ada-alire-project-root directory-path)
@@ -100,71 +102,50 @@
 
 (defun ada-alire-cd-to-project ()
   (interactive)
+  
   (cd ada-alire-project-root)
   (message "You are now in %s" ada-alire-project-root))
 
 (defun ada-alire-print-project-path ()
   (interactive)
+  
   (message ada-alire-project-root))
 
 (defun ada-alire-build ()
   (interactive)
-  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
-  
-  (cd ada-alire-project-root)
-  (message "Building project..")
-  (shell-command "alr build")
 
-  (cd ada-alire-current-directory))
+  (message "Building project..")
+  (ada-alire--start "build" "build"))
 
 (defun ada-alire-run ()
   (interactive)
-  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
-  
-  (cd ada-alire-project-root)
-  (message "Running project..")
-  (shell-command "alr run")
 
-  (cd ada-alire-current-directory))
+  (message "Running project..")
+  (ada-alire--start "run" "run"))
 
 (defun ada-alire-list-installable-crates ()
   (interactive)
-  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
-  (cd ada-alire-project-root)
-  (shell-command "alr search --list")
 
-  (cd ada-alire-current-directory))
+  (message "Listing installable crates..")
+  (ada-alire--start "search" "search" "--list"))
 
 (defun ada-alire-install-crate ()
   (interactive)
 
-  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
-  (cd ada-alire-project-root)
   (let ((crate-name
          (read-string "Crate name to install: ")))
-    (shell-command (format "alr with %s" crate-name)))
-
-  (cd ada-alire-current-directory))
+    (ada-alire--start "install" "with" crate-name)))
 
 (defun ada-alire-uninstall-crate ()
   (interactive)
 
-  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
-  (cd ada-alire-project-root)
-
   (let ((crate-name
          (read-string "Crate name to uninstall: ")))
-    (shell-command (format "alr with --del %s" crate-name)))
-
-  (cd ada-alire-current-directory))
+    (ada-alire--start "uninstall" "with" (format "--del %s" crate-name))))
 
 (defun ada-alire-update ()
   (interactive)
-
-  (setf ada-alire-current-directory (file-name-directory buffer-file-name))
-  (cd ada-alire-project-root)
-  (shell-command "alr update")
-
-  (cd ada-alire-current-directory))
+  
+  (ada-alire--start "update" "update"))
 
 ;;; ada-alire.el ends here
