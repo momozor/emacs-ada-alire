@@ -18,7 +18,7 @@
 
 
 ;; Author: Momozor <skelic3@gmail.com, momozor4@gmail.com>
-;; Version: 0.2
+;; Version: 0.3
 ;; Keywords: tools, ada
 ;; URL: https://github.com/momozor/ada-alire
 ;; Package-Requires: ((emacs "24") (ada-mode "7.1.1") (toml-mode "0.1.3"))
